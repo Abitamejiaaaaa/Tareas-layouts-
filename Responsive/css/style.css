@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+}
+
+.container > * {
+    background-color: gray;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.main::before {
+    content: "Content";
+}
+
+.sidebar::before {
+    content: "Sidebar";
+}
+
+.l1 { grid-area: l1; }
+.l2 { grid-area: l2; }
+.l3 { grid-area: l3; }
+.l4 { grid-area: l4; }
+
+.header { grid-area: header; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+.sidebar { grid-area: sidebar; }
+
+@media (min-width: 1025px) {
+    .container {
+        grid-template-columns: 200px 1fr 150px;
+        grid-template-rows: 80px 80px 1fr 80px;
+        grid-template-areas:
+            "l1 header sidebar"
+            "l2 main   sidebar"
+            "l3 main   sidebar"
+            "l4 footer sidebar";
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        grid-template-columns: 150px 1fr;
+        grid-template-rows: 70px 1fr 1fr 70px;
+        grid-template-areas:
+            "header header"
+            "l1 main"
+            "l2 main"
+            "footer footer";
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .l3, .l4 {
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px auto auto auto auto 60px;
+        grid-template-areas:
+            "header"
+            "l1"
+            "main"
+            "l2"
+            "sidebar"
+            "footer";
+    }
+
+    .l3, .l4 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px auto auto auto 60px;
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "l1"
+            "footer";
+    }
+
+    .l2, .l3, .l4 {
+        display: none;
+    }
+}
